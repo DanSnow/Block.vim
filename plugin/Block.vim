@@ -5,29 +5,35 @@
 " Repo: https://github.com/DanSnow/Block.vim                                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if exists(g:block_vim_load)
+if exists('g:block_vim_load')
   finish
 else
   let g:block_vim_load = 1
 endif
 
+if !exists('g:block_ignore_file_type')
+  let g:block_ignore_file_type = []
+endif
+
 fu! BlockIgnoreFiletype(file_type)
-  if !exists(g:block_ignore_file_type)
+  if !exists('g:block_ignore_file_type')
     let g:block_ignore_file_type = []
   endif
   if index(g:block_ignore_file_type, a:file_type) < 0
-    join(g:block_ignore_file_type, a:file_type)
+    call add(g:block_ignore_file_type, a:file_type)
   endif
 endfunc
 
 fu! s:MapKey()
-  if index(g:block_ignore_file_type, &filetype) < 0
-    iunmap {<Cr>
-    vunmap {<Cr>
-    return
+  if !exists('g:block_ignore_file_type')
+    let g:block_ignore_file_type = []
+  endif
+  if (index(g:block_ignore_file_type, &filetype) >= 0)
+    silent! iunmap <silent> {<Cr>
+    silent! vunmap <silent> {<Cr>
   else
-    inoremap {<Cr> {<Cr>}<Esc>O
-    vnoremap {<Cr> S{<Cr>}<Esc>Pk=iB
+    imap <silent> {<Cr> {<Cr>}<Esc>O
+    vmap <silent> {<Cr> S{<Cr>}<Esc>Pk=iB
   endif
 endfu
 
@@ -38,5 +44,6 @@ call BlockIgnoreFiletype('diff')
 call BlockIgnoreFiletype('html')
 call BlockIgnoreFiletype('less')
 call BlockIgnoreFiletype('notes')
+call BlockIgnoreFiletype('vim')
 
 au BufRead,BufEnter * call s:MapKey()
