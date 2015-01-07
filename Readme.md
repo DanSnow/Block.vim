@@ -24,5 +24,11 @@ And type
 :PluginInstall
 ```
 
+# Setting #
+You can use this to add more filetype that disable this keymapping at your vimrc.
+```vim
+call BlockIgnoreFiletype('<filetype>')
+```
+
 # Author #
 DanSnow
