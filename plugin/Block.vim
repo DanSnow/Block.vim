@@ -33,7 +33,7 @@ fu! s:MapKey()
     silent! vunmap <silent> {<Cr>
   else
     imap <silent> {<Cr> {<Cr>}<Esc>O
-    vmap <silent> {<Cr> S{<Cr>}<Esc>Pk=iB
+    xmap <silent> {<Cr> S{<Cr>}<Esc>Pk=iB
   endif
 endfu
 
