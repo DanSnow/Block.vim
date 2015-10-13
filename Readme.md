@@ -9,6 +9,7 @@ This plugin will open a block after you input left bracket and hit enter.
   <cursor here>
 }
 ```
+This key mapping now only for visual mode. Because delimitMate has a good support for now.
 
 The key mapping is come from [c.vim](http://www.vim.org/scripts/script.php?script_id=213)
 

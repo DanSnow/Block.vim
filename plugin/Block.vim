@@ -29,10 +29,8 @@ fu! s:MapKey()
     let g:block_ignore_file_type = []
   endif
   if (index(g:block_ignore_file_type, &filetype) >= 0)
-    silent! iunmap <silent> {<Cr>
-    silent! vunmap <silent> {<Cr>
+    silent! xunmap <silent> {<Cr>
   else
-    imap <silent> {<Cr> {<Cr>}<Esc>O
     xmap <silent> {<Cr> S{<Cr>}<Esc>Pk=iB
   endif
 endfu
